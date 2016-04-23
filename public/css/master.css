@@ -1,5 +1,5 @@
 /**{*/
-    /*border:1px solid black;*/
+    /*border:1px solid white;*/
 /*}*/
 html{
     /* Setting for root em (rem) */
@@ -9,16 +9,16 @@ html{
 body{
 
 }
-.left-main-col, .right-main-col{
-    /*height: 50rem;*/
-}
 .left-main-col{
-    background-color:#2E2E2E;
+    background-color:#1F1F1F;
+}
+.right-main-col{
+    float:right;
 }
 
 
 /*-------------- Fitting to Parent -------------*/
-html, body, .master-container, .master-row, .menu-side{
+html, body, .master-container, .master-row, .menu-side, .menu-dark-strip{
     position:absolute !important;
     top:0;
     right:0;
@@ -26,9 +26,43 @@ html, body, .master-container, .master-row, .menu-side{
     bottom:0;
 }
 
-/*-------------- subviews/side-bar -------------*/
+
+
+/*-------------- subviews/menu -------------*/
 .menu{
     position:relative !important;
-    color:red;
+    color:white;
+    padding-top:2rem;
+    padding-bottom:2rem;
+}
+.menu-items{
+    padding:0;
+    padding-left:1rem;
+    margin:0;
+}
+.menu-item{
+    font-size:2rem;
+    line-height:2rem;
+    list-style-type:none;
+    padding:.75rem;
 
+}
+.menu-item:hover, .ami{
+    background-color:#3D3D3D;
+}
+.menu-item:last-child{
+    margin-bottom:0;
+}
+
+.menu-item .glyphicon{
+    float:right;
+}
+
+
+/*-------------- subviews/content -------------*/
+.artist-name-container{
+    padding:1rem;
+}
+.artist-name{
+    font-size:4rem;
 }
