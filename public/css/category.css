@@ -1,0 +1,19 @@
+.newest-oldest-container .btn{
+    font-size:1.5rem;
+    min-width:15rem;
+}
+
+/*-------------- subviews/nav -------------*/
+.nav{
+    padding:1rem;
+}
+
+
+
+
+/*-------------- subviews/selection -------------*/
+.selection{
+    margin-right:5rem;
+    margin-top:3rem;
+    margin-bottom:3rem;
+}

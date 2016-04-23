@@ -11,8 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('layouts/master');
-});
+Route::get('/', 'PagesController@getHome');
+Route::get('/home', 'PagesController@getHome');
 
 Route::auth();

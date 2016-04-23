@@ -1,5 +1,5 @@
 /**{*/
-    /*border:1px solid white;*/
+    /*border:1px solid red;*/
 /*}*/
 html{
     /* Setting for root em (rem) */
@@ -7,7 +7,7 @@ html{
 
 }
 body{
-
+    background-color:#C7C7C7;
 }
 .left-main-col{
     background-color:#1F1F1F;
@@ -15,7 +15,15 @@ body{
 .right-main-col{
     float:right;
 }
-
+.artist-name-container{
+    padding:1rem;
+}
+.artist-name{
+    font-size:4rem;
+}
+.content{
+    padding:1rem;
+}
 
 /*-------------- Fitting to Parent -------------*/
 html, body, .master-container, .master-row, .menu-side, .menu-dark-strip{
@@ -58,11 +66,43 @@ html, body, .master-container, .master-row, .menu-side, .menu-dark-strip{
     float:right;
 }
 
-
-/*-------------- subviews/content -------------*/
-.artist-name-container{
-    padding:1rem;
+/*-------------- Global Misc -------------*/
+.well{
+    background-color:#D6D6D6 !important;
 }
-.artist-name{
-    font-size:4rem;
+.item-title{
+    text-align:center;
+    overflow:auto;
+    margin-top:.5rem;
+    margin-bottom:0;
+}
+.item-container{
+    background-color:white;
+    padding:.5rem;
+
+    box-shadow: .35rem .35rem #A9A9A9;
+}
+.item-container:hover{
+    box-shadow: .15rem .15rem #A9A9A9;
+}
+/*.item-title{*/
+    /*text-align:center;*/
+    /*border-top:1px solid #A9A9A9;*/
+    /*margin-top:-1rem;*/
+    /*margin-left:1rem;*/
+    /*margin-right:1rem;*/
+    /*padding:.25rem;*/
+/*}*/
+.spacer3rem{
+    height:3rem;
+}
+
+.tal{
+    text-align:left;
+}
+.tac{
+    text-align:center;
+}
+.tar{
+    text-align:right;
 }
