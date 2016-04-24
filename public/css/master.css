@@ -68,14 +68,26 @@ html, body, .master-container, .master-row, .menu-side, .menu-dark-strip{
 }
 
 /*-------------- Global Misc -------------*/
+.nav, .feature-nav{
+    margin:1rem;
+}
 .well{
     background-color:#D6D6D6 !important;
 }
-.item-title{
+.my-thumbnail{
+    max-height:10rem;
+}
+.item-info{
+    background-color:#BFBFBF !important;
     text-align:center;
     overflow:auto;
+    margin:0;
+}
+.item-info-top{
+    margin-bottom:.5rem
+}
+.item-info-bottom{
     margin-top:.5rem;
-    margin-bottom:0;
 }
 .item-container{
     background-color:white;
