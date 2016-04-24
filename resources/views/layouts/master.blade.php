@@ -6,6 +6,9 @@
     <!-- jQuery Library -->
     <script src="jquery.min.js"></script>
 
+    <!-- JS -->
+    @yield('to-master-head-js')
+
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/master.css">
     @yield('to-master-css')
@@ -38,5 +41,6 @@
             </div>
         </div>
     </div>
+    @yield('to-master-body-js')
 </body>
 </html>

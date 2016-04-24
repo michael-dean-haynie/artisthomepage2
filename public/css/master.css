@@ -9,6 +9,9 @@ html{
 body{
     background-color:#C7C7C7;
 }
+.admin-link{
+
+}
 .left-main-col{
     background-color:#1F1F1F;
 }
@@ -50,19 +53,22 @@ html, body, .master-container, .master-row, .menu-side, .menu-dark-strip{
     margin:0;
 }
 .menu-item{
+    color:white !important;
     font-size:2rem;
     line-height:2rem;
     list-style-type:none;
     padding:.75rem;
 
 }
-.menu-item:hover, .ami{
+.menu-item:hover{
     background-color:#3D3D3D;
 }
-.menu-item:last-child{
-    margin-bottom:0;
+.ami{
+    color:#337ab7 !important;
 }
-
+.menu-items a:hover{
+    text-decoration:none!important;
+}
 .menu-item .glyphicon{
     float:right;
 }
@@ -108,7 +114,9 @@ html, body, .master-container, .master-row, .menu-side, .menu-dark-strip{
 .spacer3rem{
     height:3rem;
 }
-
+.fs3rem{
+    font-size:3rem;
+}
 .tal{
     text-align:left;
 }
@@ -117,4 +125,11 @@ html, body, .master-container, .master-row, .menu-side, .menu-dark-strip{
 }
 .tar{
     text-align:right;
+}
+.auth-form{
+    background-color:white;
+    border-radius:.5rem;
+    padding:1rem;
+    box-shadow: .35rem .35rem #A9A9A9;
+
 }

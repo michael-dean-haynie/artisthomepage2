@@ -11,7 +11,14 @@
 |
 */
 
+Route::auth();
+
 Route::get('/', 'PagesController@getHome');
 Route::get('/home', 'PagesController@getHome');
+Route::get('/category', 'PagesController@getCategory');
+Route::get('/feature', 'PagesController@getFeature');
 
-Route::auth();
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/admin', 'PagesController@getAdmin');
+});
+
