@@ -54,11 +54,6 @@ class SetUpDefaultDbModel extends Migration
             ;
         ');
 
-        DB::statement('
-            INSERT INTO admin_data (name, value) VALUES
-            ("Regristration key", "thisisthekey")
-            ;
-        ');
 
 
     }
