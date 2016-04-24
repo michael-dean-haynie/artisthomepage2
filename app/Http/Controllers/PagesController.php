@@ -9,6 +9,6 @@ use App\Http\Requests;
 class PagesController extends Controller
 {
     public function getHome(Request $request){
-        return view('pages/category');
+        return view('pages/home');
     }
 }

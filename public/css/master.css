@@ -16,7 +16,8 @@ body{
     float:right;
 }
 .artist-name-container{
-    padding:1rem;
+    margin:1rem;
+    padding-left:2rem;
 }
 .artist-name{
     font-size:4rem;
@@ -79,20 +80,19 @@ html, body, .master-container, .master-row, .menu-side, .menu-dark-strip{
 .item-container{
     background-color:white;
     padding:.5rem;
-
     box-shadow: .35rem .35rem #A9A9A9;
 }
 .item-container:hover{
     box-shadow: .15rem .15rem #A9A9A9;
 }
-/*.item-title{*/
-    /*text-align:center;*/
-    /*border-top:1px solid #A9A9A9;*/
-    /*margin-top:-1rem;*/
-    /*margin-left:1rem;*/
-    /*margin-right:1rem;*/
-    /*padding:.25rem;*/
-/*}*/
+.feature-container{
+    max-width: 90%;
+    display:inline-block;
+    margin:0 auto;
+}
+.feature-container-container{
+    text-align:center
+}
 .spacer3rem{
     height:3rem;
 }

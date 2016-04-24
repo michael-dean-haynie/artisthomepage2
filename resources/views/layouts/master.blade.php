@@ -21,7 +21,7 @@
                 @include('subviews/menu')
             </div>
             <div class="col-xs-12 hidden-md hidden-lg hidden-xl right-main-col">
-                <div class="artist-name-container">
+                <div class="artist-name-container well well-sm">
                     <span class="artist-name">Artist Name</span>
                 </div>
                 <div class="content">
@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="col-md-9 hidden-xs hidden-sm right-main-col">
-                <div class="artist-name-container">
+                <div class="artist-name-container well well-sm">
                     <span class="artist-name">Artist Name</span>
                 </div>
                 <div class="content">
