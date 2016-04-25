@@ -1,3 +1,4 @@
 .idea
 .env
 /database/migrations/2016_04_24_124136_add_default_user.php
+/public/items
