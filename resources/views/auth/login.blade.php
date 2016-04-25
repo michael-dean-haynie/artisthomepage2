@@ -2,7 +2,7 @@
 
 @section('to-master-content')
     <div class="row">
-        <div class="col-xs-offset-2 col-xs-8 auth-form">
+        <div class="col-xs-offset-2 col-xs-8 form-slate">
             <form class="" role="form" method="POST" action="{{ url('/login') }}">
                 {!! csrf_field() !!}
 

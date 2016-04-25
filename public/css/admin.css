@@ -1,0 +1,19 @@
+.admin-option{
+    text-align:center;
+    height:10rem;
+    background-color:white;
+    border-radius:1rem;
+    box-shadow: .35rem .35rem .25rem #A9A9A9;
+    margin-bottom:3rem;
+}
+.admin-option:hover{
+    box-shadow: .15rem .15rem #A9A9A9;
+}
+.admin-option:active{
+    /*background-color:#DBDBDB;*/
+    box-shadow:inset .35rem .35rem .25rem #A9A9A9;
+}
+
+#upload-item{
+    font-size: 3rem;
+}

@@ -30,10 +30,31 @@ class SetUpDefaultDbModel extends Migration
         ');
 
         DB::statement('
+            CREATE TABLE items (
+            itemID INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+            title VARCHAR(255),
+            info VARCHAR(255),
+            fileName VARCHAR(255),
+            createdAt DATETIME DEFAULT CURRENT_TIMESTAMP(),
+            updatedAt TIMESTAMP
+            );
+        ');
+
+        DB::statement('
             CREATE TABLE admin_data (
             adminDataID INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
             name VARCHAR(255),
             value varchar(225),
+            createdAt DATETIME DEFAULT CURRENT_TIMESTAMP(),
+            updatedAt TIMESTAMP
+            );
+        ');
+
+        DB::statement('
+            CREATE TABLE link_items_categories (
+            linkID INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+            itemID INT,
+            catID INT,
             createdAt DATETIME DEFAULT CURRENT_TIMESTAMP(),
             updatedAt TIMESTAMP
             );
@@ -67,5 +88,7 @@ class SetUpDefaultDbModel extends Migration
     {
         DB::statement('DROP TABLE categories;');
         DB::statement('DROP TABLE admin_data;');
+        DB::statement('DROP TABLE items;');
+        DB::statement('DROP TABLE link_items_categories;');
     }
 }

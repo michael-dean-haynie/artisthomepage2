@@ -10,7 +10,7 @@
                 </li>
             </a>
             @foreach($allCategories as $category)
-                <?php $htmlName = VHF::stringToHtmlName($category->name);?>
+                <?php $htmlName = VHF::catIDToHtmlName($category->catID);?>
                 <a href="{{url('/category')}}">
                     <li class="menu-item{{isset($ami) && $ami == $htmlName ? ' ami' : ''}}" id="mi-{{$htmlName}}">
                         <span class="glyphicon glyphicon-menu-right"></span>
@@ -19,12 +19,20 @@
                 </a>
             @endforeach
             <div class="spacer3rem"></div>
-            <a href="{{url(Auth::check() ? '/logout' : '/admin')}}">
-                <li class="menu-item" id="mi-admin">
+            <a href="{{url('/admin')}}">
+                <li class="menu-item{{isset($ami) && $ami == 'admin' ? ' ami' : ''}}" id="mi-admin">
                     <span class="glyphicon glyphicon-cog"></span>
-                    {{Auth::check() ? 'Logout' : 'Admin'}}
+                    Admin
                 </li>
             </a>
+            @if (Auth::check())
+                <a href="{{url('logout')}}">
+                    <li class="menu-item" id="mi-logout">
+                        <span class="glyphicon glyphicon-log-out"></span>
+                        Logout
+                    </li>
+                </a>
+            @endif
         </ul>
     </div>
 </div>

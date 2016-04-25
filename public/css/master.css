@@ -98,7 +98,7 @@ html, body, .master-container, .master-row, .menu-side, .menu-dark-strip{
 .item-container{
     background-color:white;
     padding:.5rem;
-    box-shadow: .35rem .35rem #A9A9A9;
+    box-shadow: .35rem .35rem .25rem #A9A9A9;
 }
 .item-container:hover{
     box-shadow: .15rem .15rem #A9A9A9;
@@ -126,10 +126,17 @@ html, body, .master-container, .master-row, .menu-side, .menu-dark-strip{
 .tar{
     text-align:right;
 }
-.auth-form{
+.form-slate{
     background-color:white;
     border-radius:.5rem;
     padding:1rem;
-    box-shadow: .35rem .35rem #A9A9A9;
+    box-shadow: .35rem .35rem .25rem #A9A9A9;
+}
+.centerText{
+    width:100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
 }

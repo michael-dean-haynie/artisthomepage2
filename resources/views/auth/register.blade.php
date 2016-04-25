@@ -2,11 +2,11 @@
 
 @section('to-master-content')
     <div class="row">
-        <div class="col-xs-offset-2 col-xs-8 auth-form">
+        <div class="col-xs-offset-2 col-xs-8 form-slate">
             <form class="" role="form" method="POST" action="{{ url('/register') }}">
                 {!! csrf_field() !!}
 
-                <p class="fs3rem">Register</p>
+                <p class="fs3rem">Register as Admin</p>
                 <div class="form-group{{ $errors->has('key') ? ' has-error' : '' }}">
                     <label class="control-label">Registration Key</label>
 
