@@ -16,7 +16,7 @@ Route::auth();
 Route::get('/', 'PagesController@getHome');
 Route::get('/home', 'PagesController@getHome');
 Route::get('/category/{name}/{page}/{order}', 'PagesController@getCategory');
-Route::get('/feature', 'PagesController@getFeature');
+Route::get('/feature/{itemID}', 'PagesController@getFeature');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin', 'PagesController@getAdmin');

@@ -5,13 +5,15 @@
 @endsection
 
 @section('to-master-content')
-    @include('subviews/feature-nav')
     <div class="feature-container-container">
+        <a class="btn btn-primary my-back-button" href="{{URL::previous()}}">
+            <span class="glyphicon glyphicon-menu-left back-glyph"></span>
+            <span>Back to category</span>
+        </a>
         <div class="item-container feature-container">
-            <div class="item-info item-info-top well well-sm">This is the title</div>
-            <img  class="img-responsive" src="test-img/img8.jpg">
-            <div class="item-info item-info-bottom well well-sm">This is some info</div>
+            <div class="item-info item-info-top well well-sm bold">{{$featureItem->title}}</div>
+            <img  class="img-responsive" src="{{asset('items/' . $featureItem->fileName)}}">
+            <div class="item-info item-info-bottom well well-sm italics">{{$featureItem->info}}</div>
         </div>
     </div>
-    @include('subviews/feature-nav')
 @endsection

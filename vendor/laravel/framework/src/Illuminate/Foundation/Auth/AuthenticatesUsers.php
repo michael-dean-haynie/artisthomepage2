@@ -34,7 +34,7 @@ trait AuthenticatesUsers
             return view($view);
         }
 
-        return view('auth.login', \App\Http\Controllers\PagesController::prepareDataModel(['allCategories']));
+        return view('auth.login', \App\Http\Controllers\PagesController::prepareDataModel(['defaultData']));
     }
 
     /**

@@ -12,7 +12,7 @@
             <div class="spacer3rem"></div>
             @foreach($allCategories as $category)
                 <?php $htmlName = VHF::catIDToHtmlName($category->catID);?>
-                <a href="{{url('/category/' . $htmlName . "/1/asc")}}">
+                <a href="{{url('/category/' . $htmlName . "/1/desc")}}">
                     <li class="menu-item{{isset($ami) && $ami == $htmlName ? ' ami' : ''}}" id="mi-{{$htmlName}}">
                         <span class="glyphicon glyphicon-menu-right"></span>
                         {{$category->name}}

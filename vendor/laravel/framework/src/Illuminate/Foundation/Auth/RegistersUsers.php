@@ -30,7 +30,7 @@ trait RegistersUsers
             return view($this->registerView);
         }
 
-        return view('auth.register', \App\Http\Controllers\PagesController::prepareDataModel(['allCategories']));
+        return view('auth.register', \App\Http\Controllers\PagesController::prepareDataModel(['defaultData']));
     }
 
     /**

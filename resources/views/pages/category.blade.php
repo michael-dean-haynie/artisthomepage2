@@ -13,7 +13,7 @@
         {{--<button class="btn btn-primary{{$catCurrOrder == 'asc' ? ' disabled' : ''}}">New First</button>--}}
         {{--<button class="btn btn-primary{{$catCurrOrder == 'desc' ? ' disabled' : ''}}">Old First</button>--}}
     </div>
-    @include('subviews/nav')
+    {{--@include('subviews/nav')--}}
     @include('subviews/selection')
     @include('subviews/nav')
 @endsection

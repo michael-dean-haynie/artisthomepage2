@@ -67,6 +67,12 @@ class SetUpDefaultDbModel extends Migration
         */
 
         DB::statement('
+            INSERT INTO admin_data (name, value) VALUES
+            ("artist-name", "Artist Name")
+            ;
+        ');
+
+        DB::statement('
             INSERT INTO categories (name, canEdit) VALUES
             ("All art", 0),
             ("Digital art", 1),
@@ -105,7 +111,7 @@ class SetUpDefaultDbModel extends Migration
             ('Lonely tree', 'This looks like something from kung fu panda mixed with skyrim', 'KMsqfYPWEUifhiHb6Hg9DB7JnucJYQTMHSxFQQ7d.jpg'),
             ('Spiral Galaxy', '', 'dwURMmqrOHyB60TXCG0nW0xmDD3gaJDAN33eF3Oz.jpg'),
             ('Arthas', '\"Frostmorne hungers...\"', 'oSXFgpXNM2VzjDBRJ9wIDhjyPxkmLUn153qzhBbq.jpg'),
-            ('Quite meadow', 'There needs to be a bunny. A bunny would be perfect. Don''t you think?', '3sHzVWo5BXsWqS6vrOkCJ5ZqMyRfYHbNkItiYoUi.jpg'),
+            ('Quiet meadow', 'There needs to be a bunny. A bunny would be perfect. Don''t you think?', '3sHzVWo5BXsWqS6vrOkCJ5ZqMyRfYHbNkItiYoUi.jpg'),
             ('City from the ocean', '', 'sZtIQeDXpIsaPAD6UQP5aI0pvagKOmX7hfAo5BH7.jpg')
             ;
         ");

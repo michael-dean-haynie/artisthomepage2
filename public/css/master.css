@@ -37,8 +37,9 @@ html, body, .master-container, .master-row, .menu-side, .menu-dark-strip{
     left:0;
     bottom:0;
 }
-
-
+/*.menu-side{*/
+    /*bottom:-100rem!important;*/
+/*}*/
 
 /*-------------- subviews/menu -------------*/
 .menu{
@@ -54,6 +55,7 @@ html, body, .master-container, .master-row, .menu-side, .menu-dark-strip{
 }
 .menu-item{
     color:white !important;
+    /*border:5px solid #1F1F1F;*/
     font-size:2rem;
     line-height:2rem;
     list-style-type:none;
@@ -85,10 +87,11 @@ html, body, .master-container, .master-row, .menu-side, .menu-dark-strip{
     max-height:10rem;
 }
 .item-info{
-    background-color:#BFBFBF !important;
+    /*background-color:#BFBFBF !important;*/
     text-align:center;
     overflow:auto;
     margin:0;
+    padding:.25rem!important;
 }
 .item-info-top{
     margin-bottom:.5rem
@@ -118,6 +121,9 @@ html, body, .master-container, .master-row, .menu-side, .menu-dark-strip{
 .fs3rem{
     font-size:3rem;
 }
+.fs1p5rem{
+    font-size:1.5rem;
+}
 .tal{
     text-align:left;
 }
@@ -126,6 +132,12 @@ html, body, .master-container, .master-row, .menu-side, .menu-dark-strip{
 }
 .tar{
     text-align:right;
+}
+.my-nav-btn{
+    min-height:2.5rem;
+    min-width:7rem;
+    margin-left:.5rem;
+    margin-right:.5rem;
 }
 .form-slate{
     background-color:white;
@@ -139,5 +151,22 @@ html, body, .master-container, .master-row, .menu-side, .menu-dark-strip{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-
+}
+.my-back-button{
+    width:100%;
+    height:3rem;
+    margin-bottom: 1rem;
+    font-size:2rem;
+    padding:0rem;
+}
+.back-glyph{
+    margin-top:.4rem;
+    margin-left:1rem;
+    float:left;
+}
+.italics{
+    font-style:italic;
+}
+.bold{
+    font-weight:bold;
 }

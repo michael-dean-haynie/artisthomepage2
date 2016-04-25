@@ -17,12 +17,20 @@ class PagesController extends Controller
 
     static function prepareDataModel(Array $dataNames){
         $dataModel = [];
-        if (in_array('allCategories', $dataNames)){
+        if (in_array('allCategories', $dataNames) || in_array('defaultData', $dataNames)){
             $dataModel['allCategories'] = DB::select('
                 SELECT * FROM categories
                 ;
             ');
         }
+
+        if (in_array('artistName', $dataNames) || in_array('defaultData', $dataNames)){
+            $dataModel['artistName'] = DB::select('
+                SELECT value FROM admin_data
+                WHERE name = "artist-name"
+                ;')[0]->value;
+        }
+
         return $dataModel;
     }
 
@@ -33,14 +41,14 @@ class PagesController extends Controller
     */
 
     public function getHome(Request $request){
-        $dataModel = $this::prepareDataModel(['allCategories']);
+        $dataModel = $this::prepareDataModel(['defaultData']);
         $dataModel['ami'] = 'home';
         return view('pages/home', $dataModel);
     }
 
 
     public function getCategory(Request $request, $name, $page, $order){
-        $dataModel = $this::prepareDataModel(['allCategories']);
+        $dataModel = $this::prepareDataModel(['defaultData']);
         $dataModel['ami'] = $name;
 
         $catID = VHF::htmlNameToCatID($name);
@@ -53,14 +61,22 @@ class PagesController extends Controller
         return view('pages/category', $dataModel);
     }
 
+    public function getFeature(Request $request, $itemID){
+        $dataModel = $this::prepareDataModel(['defaultData']);
+        $dataModel['ami'] = '';
+        $dataModel['featureItem'] = $this->getFeatureItem($itemID);
+
+        return view('pages/feature', $dataModel);
+    }
+
     public function getAdmin(Request $request){
-        $dataModel = $this::prepareDataModel(['allCategories']);
+        $dataModel = $this::prepareDataModel(['defaultData']);
         $dataModel['ami'] = 'admin';
         return view('pages/admin', $dataModel);
     }
 
     public function getUploadItem(Request $request){
-        $dataModel = $this::prepareDataModel(['allCategories']);
+        $dataModel = $this::prepareDataModel(['defaultData']);
         $dataModel['ami'] = 'admin';
         return view('pages/upload-item', $dataModel);
     }
@@ -74,7 +90,7 @@ class PagesController extends Controller
 
 
     public function postUploadItem(Request $request){
-        $dataModel = $this::prepareDataModel(['allCategories']);
+        $dataModel = $this::prepareDataModel(['defaultData']);
         $dataModel['ami'] = 'admin';
 
         // validate input
@@ -157,5 +173,9 @@ class PagesController extends Controller
             WHERE catID = ?
         ;", [$catID])[0]->itemCount;
         return (int)ceil($itemCount / 8);
+    }
+
+    static function getFeatureItem($itemID){
+        return DB::select('SELECT * FROM items WHERE itemID = ?;', [$itemID])[0];
     }
 }

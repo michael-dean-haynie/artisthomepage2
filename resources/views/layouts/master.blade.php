@@ -25,7 +25,7 @@
             </div>
             <div class="col-xs-12 hidden-md hidden-lg hidden-xl right-main-col">
                 <div class="artist-name-container well well-sm">
-                    <span class="artist-name">Artist Name</span>
+                    <span class="artist-name">{{$artistName}}</span>
                 </div>
                 <div class="content">
                     @yield('to-master-content')
@@ -33,7 +33,7 @@
             </div>
             <div class="col-md-9 hidden-xs hidden-sm right-main-col">
                 <div class="artist-name-container well well-sm">
-                    <span class="artist-name">Artist Name</span>
+                    <span class="artist-name">{{$artistName}}</span>
                 </div>
                 <div class="content">
                     @yield('to-master-content')
