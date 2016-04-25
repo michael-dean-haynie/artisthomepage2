@@ -3,7 +3,7 @@
 @extends('layouts/master')
 
 @section('to-master-css')
-    <link rel="stylesheet" type="text/css" href="css/upload-item.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/upload-item.css')}}">
 @endsection
 
 @section('to-master-content')

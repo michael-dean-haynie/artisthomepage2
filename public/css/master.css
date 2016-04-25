@@ -65,6 +65,7 @@ html, body, .master-container, .master-row, .menu-side, .menu-dark-strip{
 }
 .ami{
     color:#337ab7 !important;
+    border:5px solid #337ab7;
 }
 .menu-items a:hover{
     text-decoration:none!important;

@@ -2,15 +2,15 @@
 <html>
 <head>
     <!-- Bootstrap Library -->
-    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
     <!-- jQuery Library -->
-    <script src="jquery.min.js"></script>
+    <script src="{{asset('jquery.min.js')}}"></script>
 
     <!-- JS -->
     @yield('to-master-head-js')
 
     <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="css/master.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/master.css')}}">
     @yield('to-master-css')
 
 </head>

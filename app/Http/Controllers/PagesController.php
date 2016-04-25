@@ -39,9 +39,17 @@ class PagesController extends Controller
     }
 
 
-    public function getCategory(Request $request){
+    public function getCategory(Request $request, $name, $page, $order){
         $dataModel = $this::prepareDataModel(['allCategories']);
-        $dataModel['ami'] = '';
+        $dataModel['ami'] = $name;
+
+        $catID = VHF::htmlNameToCatID($name);
+        $dataModel['catName'] = $name;
+        $dataModel['catPage'] = $page;
+        $dataModel['catPageCount'] = $this->getCatPageCount($catID);
+        $dataModel['catCurrOrder'] = $order;
+        $dataModel['catSelection'] = $this->getCatSelection($catID, (int)$page, $order);
+
         return view('pages/category', $dataModel);
     }
 
@@ -128,5 +136,26 @@ class PagesController extends Controller
 
     static function getAdminKey(){
         return DB::select('SELECT value FROM admin_data WHERE adminDataID = 1;')[0]->value;
+    }
+
+    static function getCatSelection($catID, $page, $order){
+        $offset = ($page-1) * 8;
+        $order = ($order == 'asc' ? 'ASC' : 'DESC');
+        return DB::select("
+            SELECT items.itemID, title, info, fileName
+            FROM items INNER JOIN link_items_categories AS links
+              ON items.itemID = links.itemID AND links.catID = ?
+            ORDER BY items.itemID $order
+            LIMIT 8 OFFSET ?
+        ;", [$catID, $offset]);
+    }
+
+    static function getCatPageCount($catID){
+        $itemCount = DB::select("
+            SELECT COUNT(*) AS itemCount
+            FROM link_items_categories
+            WHERE catID = ?
+        ;", [$catID])[0]->itemCount;
+        return (int)ceil($itemCount / 8);
     }
 }

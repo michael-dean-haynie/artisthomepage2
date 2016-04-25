@@ -1,7 +1,7 @@
 @extends('layouts/master')
 
 @section('to-master-css')
-    <link rel="stylesheet" type="text/css" href="css/home.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/home.css')}}">
 @endsection
 
 @section('to-master-content')
