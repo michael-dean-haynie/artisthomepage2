@@ -84,7 +84,7 @@ html, body, .master-container, .master-row, .menu-side, .menu-dark-strip{
     background-color:#D6D6D6 !important;
 }
 .my-thumbnail{
-    max-height:10rem;
+    max-height:15rem;
 }
 .item-info{
     /*background-color:#BFBFBF !important;*/
@@ -103,9 +103,13 @@ html, body, .master-container, .master-row, .menu-side, .menu-dark-strip{
     background-color:white;
     padding:.5rem;
     box-shadow: .35rem .35rem .25rem #A9A9A9;
+    text-align:center;
 }
 .item-container:hover{
     box-shadow: .15rem .15rem #A9A9A9;
+}
+.img-wrapper{
+    display:inline-block;
 }
 .feature-container{
     max-width: 90%;
@@ -113,7 +117,10 @@ html, body, .master-container, .master-row, .menu-side, .menu-dark-strip{
     margin:0 auto;
 }
 .feature-container-container{
-    text-align:center
+    text-align:center;
+}
+.feature-img{
+    max-height:50rem;
 }
 .spacer3rem{
     height:3rem;
@@ -163,6 +170,9 @@ html, body, .master-container, .master-row, .menu-side, .menu-dark-strip{
     margin-top:.4rem;
     margin-left:1rem;
     float:left;
+}
+.redText{
+    color:red;
 }
 .italics{
     font-style:italic;

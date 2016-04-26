@@ -4,7 +4,9 @@
             @if(array_key_exists($i, $catSelection))
                 <a href="{{url('/feature/' . $catSelection[$i]->itemID)}}">
                     <div class="col-xs-offset-1 col-xs-2 item-container">
-                        <img  class="img-responsive my-thumbnail" src="{{asset('items/' . $catSelection[$i]->fileName)}}">
+                        <div class="img-wrapper">
+                            <img  class="img-responsive img-rounded my-thumbnail" src="{{asset('items/' . $catSelection[$i]->fileName)}}">
+                        </div>
                         <div class="item-info item-info-bottom well well-sm">
                             <span class="bold">{{$catSelection[$i]->title}}</span>
                         </div>
@@ -19,7 +21,9 @@
             @if(array_key_exists($i, $catSelection))
                 <a href="{{url('/feature/' . $catSelection[$i]->itemID)}}">
                     <div class="col-xs-offset-1 col-xs-2 item-container">
-                        <img  class="img-responsive my-thumbnail" src="{{asset('items/' . $catSelection[$i]->fileName)}}">
+                        <div class="img-wrapper">
+                            <img  class="img-responsive img-rounded my-thumbnail" src="{{asset('items/' . $catSelection[$i]->fileName)}}">
+                        </div>
                         <div class="item-info item-info-bottom well well-sm">
                             <span class="bold">{{$catSelection[$i]->title}}</span>
                         </div>

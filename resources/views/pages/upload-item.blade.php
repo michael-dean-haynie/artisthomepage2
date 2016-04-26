@@ -8,6 +8,12 @@
 
 @section('to-master-content')
     <div class="row">
+        <div class="col-xs-offset-1 col-xs-10">
+            <a class="btn btn-primary my-back-button" href="{{url('/admin')}}">
+                <span class="glyphicon glyphicon-menu-left back-glyph"></span>
+                <span>Back to Admin Dashboard</span>
+            </a>
+        </div>
         <div class="col-xs-offset-2 col-xs-8 form-slate">
             <form enctype="multipart/form-data" method="post" action="{{url('/upload-item')}}">
                 {!! csrf_field() !!}
@@ -28,7 +34,7 @@
                     <input type="text" class="form-control" id="info" name="info" placeholder="Any other relevant info">
                 </div>
                 <div class="form-group">
-                    <label for="categories">Categories <small>Select all that apply</small></label>
+                    <label for="categories">Categories <small>(Select all that apply)</small></label>
                     <div class="well well-sm">
                         @foreach($allCategories as $category)
                             <?php $htmlName = VHF::catIDToHtmlName($category->catID);?>
@@ -36,13 +42,14 @@
                                 <input type="hidden" name="{{$htmlName}}" id="{{$htmlName}}" value="{{$htmlName}}">
                             @endif
                             <input type="checkbox" name="{{$htmlName}}" id="{{$htmlName}}" value="{{$htmlName}}"
-                                   {{$category->canEdit == 0 ? 'checked disabled': ''}}>{{$category->name}}<br>
+
+                                   {{$category->canEdit == 0 ? ' checked disabled': ''}}>{{$category->name}}<br>
                         @endforeach
                     </div>
                 </div>
 
 
-                <input type="submit" class="btn btn-primary form-control" id="submit" name="submit" value="Upload">
+                <input type="submit" class="btn btn-success form-control" id="submit" name="submit" value="Upload">
             </form>
         </div>
     </div>

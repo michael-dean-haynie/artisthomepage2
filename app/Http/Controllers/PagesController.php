@@ -64,7 +64,7 @@ class PagesController extends Controller
     public function getFeature(Request $request, $itemID){
         $dataModel = $this::prepareDataModel(['defaultData']);
         $dataModel['ami'] = '';
-        $dataModel['featureItem'] = $this->getFeatureItem($itemID);
+        $dataModel['featureItem'] = $this->getItem($itemID);
 
         return view('pages/feature', $dataModel);
     }
@@ -79,6 +79,17 @@ class PagesController extends Controller
         $dataModel = $this::prepareDataModel(['defaultData']);
         $dataModel['ami'] = 'admin';
         return view('pages/upload-item', $dataModel);
+    }
+
+    public function getEditItem(Request $request, $itemID){
+        $dataModel = $this::prepareDataModel(['defaultData']);
+        $dataModel['ami'] = 'admin';
+        $dataModel['editingItemID'] = $itemID;
+        if ($itemID != 0) {
+            $dataModel['editingItem'] = $this->getItem($itemID);
+            $dataModel['editingItemsCategories'] = $this->getItemsCategories($itemID);
+        }
+        return view('pages/edit-item', $dataModel);
     }
 
     /*
@@ -131,17 +142,73 @@ class PagesController extends Controller
                 $newName
             ]);
 
+
         // add records to link_items_categories table
         $itemID = DB::select('SELECT MAX(itemID) AS itemID FROM items;')[0]->itemID;
-        $rows = DB::select('SELECT * FROM categories;');
-        foreach($rows as $row){
-            $htmlName = VHF::catIDToHtmlName($row->catID);
-            if ($request->input($htmlName)) {
-                DB::insert('INSERT INTO link_items_categories (itemID, catID) VALUES (?, ?);', [$itemID, $row->catID]);
-            }
-        }
+        $this->insertLinks($itemID, $request);
 
         return redirect('/upload-item')->with('success', 'File uploaded successfully.');
+    }
+
+    public function postEditItem(Request $request){
+//        var_dump($request->input());
+        if ($request->has('update-or-delete') && $request->input('update-or-delete') == 'delete'){
+            return $this->deleteItem($request);
+        }else{
+            return $this->updateItem($request);
+        }
+    }
+
+    public function updateItem(Request $request){
+        $dataModel = $this::prepareDataModel(['defaultData']);
+        $dataModel['ami'] = 'admin';
+
+        // validate input
+        $this->validate($request, [
+            'title' => 'required|max:255',
+            'info' => 'max:255',
+        ],
+        [],
+        [
+            'title' => 'Title',
+            'info' => 'Info'
+        ]);
+
+        //update items table
+        DB::update('
+            UPDATE items SET title = ?, info = ?
+            WHERE itemID = ?
+        ;', [$request->input('title'), $request->input('info'), $request->input('editingItemID')]);
+
+        //delete links
+        $this->deleteLinks($request->input('editingItemID'));
+
+        // add records to link_items_categories table
+        $this->insertLinks($request->input('editingItemID'), $request);
+
+        return redirect('/edit-item/' . $request->input('editingItemID'))->with('success', 'Item updated successfully.');
+    }
+
+    public function deleteItem(Request $request){
+        $dataModel = $this::prepareDataModel(['defaultData']);
+        $dataModel['ami'] = 'admin';
+
+        // validate input
+        $this->validate($request, [
+            'delete-item' => 'required'
+        ],
+        [],
+        [
+            'delete-item' => '"I want to delete this item for good"'
+        ]);
+
+        //delete item
+        $this->deleteItemFromTable($request->input('editingItemID'));
+
+        //delete links
+        $this->deleteLinks($request->input('editingItemID'));
+
+        return redirect('/admin')->with('success', 'Item deleted successfully.');
     }
 
     /*
@@ -152,6 +219,27 @@ class PagesController extends Controller
 
     static function getAdminKey(){
         return DB::select('SELECT value FROM admin_data WHERE adminDataID = 1;')[0]->value;
+    }
+
+    static function deleteItemFromTable($itemID){
+        DB::delete('
+            DELETE FROM items
+            WHERE itemID = ?
+        ;', [$itemID]);
+    }
+
+    static function deleteLinks($itemID){
+        DB::delete('DELETE FROM link_items_categories WHERE itemID = ?;', [$itemID]);
+    }
+
+    static function insertLinks($itemID, $request){
+        $rows = DB::select('SELECT * FROM categories;');
+        foreach($rows as $row){
+            $htmlName = VHF::catIDToHtmlName($row->catID);
+            if ($request->input($htmlName) && $request->input($htmlName) == $htmlName) {
+                DB::insert('INSERT INTO link_items_categories (itemID, catID) VALUES (?, ?);', [$itemID, $row->catID]);
+            }
+        }
     }
 
     static function getCatSelection($catID, $page, $order){
@@ -175,7 +263,22 @@ class PagesController extends Controller
         return (int)ceil($itemCount / 8);
     }
 
-    static function getFeatureItem($itemID){
+    static function getItem($itemID){
         return DB::select('SELECT * FROM items WHERE itemID = ?;', [$itemID])[0];
+    }
+
+    static function getItemsCategories($itemID){
+        $rows = DB::select('
+            SELECT catID
+            FROM items
+            INNER JOIN link_items_categories AS links
+              ON items.itemID = links.itemID AND items.itemID = ?
+        ;', [$itemID]);
+
+        $itemCategories = [];
+        foreach($rows as $row){
+            $itemCategories[] = $row->catID;
+        }
+        return $itemCategories;
     }
 }

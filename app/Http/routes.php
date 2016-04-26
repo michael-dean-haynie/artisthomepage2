@@ -22,6 +22,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin', 'PagesController@getAdmin');
     Route::get('/upload-item', 'PagesController@getUploadItem');
     Route::post('/upload-item', 'PagesController@postUploadItem');
-
+    Route::get('/edit-item/{itemID}', 'PagesController@getEditItem');
+    Route::post('/edit-item', 'PagesController@postEditItem');
 });
 
