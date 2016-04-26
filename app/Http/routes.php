@@ -24,5 +24,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/upload-item', 'PagesController@postUploadItem');
     Route::get('/edit-item/{itemID}', 'PagesController@getEditItem');
     Route::post('/edit-item', 'PagesController@postEditItem');
+    Route::get('/set-homepage-item', 'PagesController@getSetHomepageItem');
+    Route::post('/set-homepage-item', 'PagesController@postSetHomepageItem');
 });
 

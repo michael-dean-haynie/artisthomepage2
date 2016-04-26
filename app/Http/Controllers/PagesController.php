@@ -43,6 +43,7 @@ class PagesController extends Controller
     public function getHome(Request $request){
         $dataModel = $this::prepareDataModel(['defaultData']);
         $dataModel['ami'] = 'home';
+        $dataModel['homepageItem'] = $this->getHomepageItem();
         return view('pages/home', $dataModel);
     }
 
@@ -90,6 +91,18 @@ class PagesController extends Controller
             $dataModel['editingItemsCategories'] = $this->getItemsCategories($itemID);
         }
         return view('pages/edit-item', $dataModel);
+    }
+
+    public function getSetHomepageItem(Request $request){
+        $dataModel = $this::prepareDataModel(['defaultData']);
+        $dataModel['ami'] = 'admin';
+        if ((int)DB::select('SELECT value FROM admin_data WHERE name = "homepage-itemID";')[0]->value === 0){
+            $dataModel['homepageIsRandom'] = true;
+        }else{
+            $dataModel['homepageIsRandom'] = false;
+            $dataModel['homepageItem'] = $this->getHomepageItem();
+        }
+        return view('pages/set-homepage-item', $dataModel);
     }
 
     /*
@@ -148,6 +161,23 @@ class PagesController extends Controller
         $this->insertLinks($itemID, $request);
 
         return redirect('/upload-item')->with('success', 'File uploaded successfully.');
+    }
+
+    public function postSetHomepageItem(Request $request){
+//        var_dump($request->input());
+
+        // validate input
+        $this->validate($request, [
+            'homepage-itemID' => 'required'
+        ],
+        [],
+        [
+            'homepage-itemID' => 'Randomize'
+        ]);
+
+        $this->updateHomepageItemID($request->input('homepage-itemID'));
+
+        return redirect('/set-homepage-item')->with('success', 'Homepage feature updated successfully.');
     }
 
     public function postEditItem(Request $request){
@@ -217,8 +247,8 @@ class PagesController extends Controller
     |-----------------------------
     */
 
-    static function getAdminKey(){
-        return DB::select('SELECT value FROM admin_data WHERE adminDataID = 1;')[0]->value;
+    static function getRegistrationKey(){
+        return DB::select('SELECT value FROM admin_data WHERE name = "registration-key";')[0]->value;
     }
 
     static function deleteItemFromTable($itemID){
@@ -280,5 +310,18 @@ class PagesController extends Controller
             $itemCategories[] = $row->catID;
         }
         return $itemCategories;
+    }
+
+    static function getHomepageItem(){
+        $itemID = (int)DB::select('SELECT value FROM admin_data WHERE name = "homepage-itemID";')[0]->value;
+        if ($itemID === 0){
+            return DB::select('SELECT * FROM items ORDER BY rand() LIMIT 1;')[0];
+        }else{
+            return DB::select('SELECT * FROM items WHERE itemID = ?;', [$itemID])[0];
+        }
+    }
+
+    static function updateHomepageItemID($itemID){
+        DB::update('UPDATE admin_data SET value = ? WHERE name = "homepage-itemID";', [$itemID]);
     }
 }
