@@ -44,6 +44,7 @@ class PagesController extends Controller
         $dataModel = $this::prepareDataModel(['defaultData']);
         $dataModel['ami'] = 'home';
         $dataModel['homepageItem'] = $this->getHomepageItem();
+        if ($dataModel['homepageItem'] == 'no-items') return view('pages/empty-page', $dataModel);
         return view('pages/home', $dataModel);
     }
 
@@ -249,11 +250,22 @@ class PagesController extends Controller
             'delete-item' => '"I want to delete this item for good"'
         ]);
 
+        $item = DB::select('SELECT * FROM items WHERE itemID = ?;', [$request->input('editingItemID')])[0];
+
+        //delete file
+        unlink('items/' . $item->fileName);
+
         //delete item
         $this->deleteItemFromTable($request->input('editingItemID'));
 
         //delete links
         $this->deleteLinks($request->input('editingItemID'));
+
+        // check for homepage item
+        if (DB::select('SELECT value FROM admin_data WHERE name = "homepage-itemID";')[0]->value == $request->input('editingItemID')){
+            $adminDataID = DB::select('SELECT adminDataID FROM admin_data WHERE name = "homepage-itemID";')[0]->adminDataID;
+            DB::update('UPDATE admin_data SET value = "0" WHERE adminDataID = ?;', [$adminDataID]);
+        }
 
         return redirect('/admin')->with('success', 'Item deleted successfully.');
     }
@@ -404,6 +416,7 @@ class PagesController extends Controller
     }
 
     static function getHomepageItem(){
+        if(DB::select('SELECT COUNT(*) AS count FROM items;')[0]->count < 1) return "no-items";
         $itemID = (int)DB::select('SELECT value FROM admin_data WHERE name = "homepage-itemID";')[0]->value;
         if ($itemID === 0){
             return DB::select('SELECT * FROM items ORDER BY rand() LIMIT 1;')[0];
