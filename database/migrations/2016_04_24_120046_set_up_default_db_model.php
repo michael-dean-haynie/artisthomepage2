@@ -24,7 +24,7 @@ class SetUpDefaultDbModel extends Migration
             catID INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
             name VARCHAR(255),
             canEdit INT DEFAULT 1,
-            createdAt DATETIME DEFAULT CURRENT_TIMESTAMP(),
+
             updatedAt TIMESTAMP
             );
         ');
@@ -35,7 +35,7 @@ class SetUpDefaultDbModel extends Migration
             title VARCHAR(255),
             info VARCHAR(255),
             fileName VARCHAR(255),
-            createdAt DATETIME DEFAULT CURRENT_TIMESTAMP(),
+
             updatedAt TIMESTAMP
             );
         ');
@@ -45,7 +45,7 @@ class SetUpDefaultDbModel extends Migration
             adminDataID INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
             name VARCHAR(255),
             value varchar(225),
-            createdAt DATETIME DEFAULT CURRENT_TIMESTAMP(),
+
             updatedAt TIMESTAMP
             );
         ');
@@ -54,8 +54,7 @@ class SetUpDefaultDbModel extends Migration
             CREATE TABLE link_items_categories (
             linkID INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
             itemID INT,
-            catID INT,
-            createdAt DATETIME DEFAULT CURRENT_TIMESTAMP(),
+
             updatedAt TIMESTAMP
             );
         ');
