@@ -11,7 +11,7 @@
                     <label class="control-label">Registration Key</label>
 
                     <div class="">
-                        <input type="text" class="form-control" name="key" value="{{ old('key') }}">
+                        <input type="password" class="form-control" name="key" value="{{ old('key') }}">
 
                         @if ($errors->has('key'))
                             <span class="help-block">
