@@ -34,8 +34,19 @@
             <div class="row">
                 <a href="{{url('/set-homepage-item')}}">
                     <div class="col-xs-offset-1 col-xs-10 admin-option">
-                        <p class="centerText" id="edit-item">
+                        <p class="centerText" id="set-homepage-item">
                             Set Homepage Feature <span class="glyphicon glyphicon-picture"></span>
+                        </p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-4">
+            <div class="row">
+                <a href="{{url('/manage-categories')}}">
+                    <div class="col-xs-offset-1 col-xs-10 admin-option">
+                        <p class="centerText" id="manage-categories">
+                            Manage Categories <span class="glyphicon glyphicon-wrench"></span>
                         </p>
                     </div>
                 </a>

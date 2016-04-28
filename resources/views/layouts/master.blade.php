@@ -41,6 +41,29 @@
             </div>
         </div>
     </div>
+    {{--Blocking right click for imgs--}}
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var pixelSource = '{{url('Transparent.gif')}}}';
+            var useOnAllImages = true;
+            // Preload the pixel
+            var preload = new Image();
+            preload.src = pixelSource;
+            $('img').live('mouseenter touchstart', function(e) {
+                // Only execute if this is not an overlay or skipped
+                var img = $(this);
+                if (img.hasClass('protectionOverlay')) return;
+                if (!useOnAllImages && !img.hasClass('protectMe')) return;
+                // Get the real image's position, add an overlay
+                var pos = img.offset();
+                var overlay = $('<img class="protectionOverlay" src="' + pixelSource + '" width="' + img.width() + '" height="' + img.height() + '" />').css({position: 'absolute', zIndex: 9999999, left: pos.left, top: pos.top}).appendTo('body').bind('mouseleave', function() {
+                    setTimeout(function(){ overlay.remove(); }, 0, $(this));
+                });
+                if ('ontouchstart' in window) $(document).one('touchend', function(){ setTimeout(function(){ overlay.remove(); }, 0, overlay); });
+            });
+        });
+    </script>
     @yield('to-master-body-js')
 </body>
 </html>

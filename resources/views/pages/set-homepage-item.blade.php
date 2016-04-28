@@ -8,6 +8,12 @@
 
 @section('to-master-content')
     <div class="row">
+        <div class="col-xs-offset-1 col-xs-10">
+            <a class="btn btn-primary my-back-button" href="{{url('/admin')}}">
+                <span class="glyphicon glyphicon-menu-left back-glyph"></span>
+                <span>Admin Dashboard</span>
+            </a>
+        </div>
         <div class="col-xs-offset-2 col-xs-8 form-slate">
             @include('subviews/validation-errors')
             @include('subviews/validation-success')

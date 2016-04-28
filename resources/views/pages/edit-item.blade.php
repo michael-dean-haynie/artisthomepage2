@@ -8,12 +8,12 @@
 
 @section('to-master-content')
     <div class="row">
-        {{--<div class="col-xs-offset-1 col-xs-10">--}}
-            {{--<a class="btn btn-primary my-back-button" href="{{URL::previous()}}">--}}
-                {{--<span class="glyphicon glyphicon-menu-left back-glyph"></span>--}}
-                {{--<span>Back</span>--}}
-            {{--</a>--}}
-        {{--</div>--}}
+        <div class="col-xs-offset-1 col-xs-10">
+            <a class="btn btn-primary my-back-button" href="{{url('/admin')}}">
+                <span class="glyphicon glyphicon-menu-left back-glyph"></span>
+                <span>Admin Dashboard</span>
+            </a>
+        </div>
         @if($editingItemID == 0)
             <div class="col-xs-offset-1 col-xs-10">
                 <div class="alert alert-danger">

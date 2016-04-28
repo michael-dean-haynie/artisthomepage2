@@ -105,6 +105,23 @@ class PagesController extends Controller
         return view('pages/set-homepage-item', $dataModel);
     }
 
+    public function getManageCategories(Request $request){
+        $dataModel = $this::prepareDataModel(['defaultData']);
+        $dataModel['ami'] = 'admin';
+
+        return view('pages/manage-categories', $dataModel);
+    }
+
+    public function getEditCategory(Request $request, $catID){
+        $dataModel = $this::prepareDataModel(['defaultData']);
+        $dataModel['ami'] = 'admin';
+        $dataModel['category'] = DB::select('SELECT * FROM categories WHERE catID = ?;', [$catID])[0];
+
+        return view('pages/edit-category', $dataModel);
+    }
+
+
+
     /*
     |-----------------------------
     | POST
@@ -239,6 +256,80 @@ class PagesController extends Controller
         $this->deleteLinks($request->input('editingItemID'));
 
         return redirect('/admin')->with('success', 'Item deleted successfully.');
+    }
+
+    public function postAddCategory(Request $request){
+        $dataModel = $this::prepareDataModel(['defaultData']);
+        $dataModel['ami'] = 'admin';
+
+        // validate input
+        $this->validate($request, [
+            'name' => 'required|max:225'
+        ],
+        [],
+        [
+            'name' => 'Name'
+        ]);
+
+        // Insert category
+        DB::insert('
+            INSERT INTO categories (name, canEdit) VALUES (?, 1)
+            ;
+        ', [$request->input('name')]);
+
+
+        return redirect('/manage-categories')->with('success', 'Category added successfully.');
+    }
+
+    public function postUpdateCategory(Request $request){
+        $dataModel = $this::prepareDataModel(['defaultData']);
+        $dataModel['ami'] = 'admin';
+
+        // validate input
+        $this->validate($request, [
+            'name' => 'required|max:225'
+        ],
+        [],
+        [
+            'name' => 'Name'
+        ]);
+
+        // Update category
+        DB::update('
+            UPDATE categories SET name = ? WHERE catID = ?
+            ;
+        ', [$request->input('name'), $request->input('catID')]);
+
+
+        return redirect('/manage-categories')->with('success', 'Category updated successfully.');
+    }
+
+    public function postDeleteCategory(Request $request){
+        $dataModel = $this::prepareDataModel(['defaultData']);
+        $dataModel['ami'] = 'admin';
+
+        // validate input
+        $this->validate($request, [
+            'delete-category' => 'required'
+        ],
+        [],
+        [
+            'delete-category' => '"I want to delete this item for good"'
+        ]);
+
+        // Delete category
+        DB::delete('
+            DELETE FROM categories WHERE catID = ?
+            ;
+        ', [$request->input('catID')]);
+
+        // Delete category links
+        DB::delete('
+            DELETE FROM link_items_categories WHERE catID = ?
+            ;
+        ', [$request->input('catID')]);
+
+        return redirect('/manage-categories')->with('success', 'Category deleted successfully.');
     }
 
     /*

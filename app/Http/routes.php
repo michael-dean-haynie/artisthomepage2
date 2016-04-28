@@ -26,5 +26,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/edit-item', 'PagesController@postEditItem');
     Route::get('/set-homepage-item', 'PagesController@getSetHomepageItem');
     Route::post('/set-homepage-item', 'PagesController@postSetHomepageItem');
+    Route::get('/manage-categories', 'PagesController@getManageCategories');
+    Route::post('/add-category', 'PagesController@postAddCategory');
+    Route::get('/edit-category/{catID}', 'PagesController@getEditCategory');
+    Route::post('/update-category', 'PagesController@postUpdateCategory');
+    Route::post('/delete-category', 'PagesController@postDeleteCategory');
 });
 

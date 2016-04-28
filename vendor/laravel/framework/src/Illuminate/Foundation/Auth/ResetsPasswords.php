@@ -34,7 +34,7 @@ trait ResetsPasswords
         }
 
         if (view()->exists('auth.passwords.email')) {
-            return view('auth.passwords.email');
+            return view('auth.passwords.email', \App\Http\Controllers\PagesController::prepareDataModel(['defaultData']));
         }
 
         return view('auth.password');
