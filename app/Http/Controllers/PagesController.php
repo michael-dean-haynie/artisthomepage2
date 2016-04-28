@@ -163,7 +163,7 @@ class PagesController extends Controller
         } while (in_array($newName, $currentItemNames));
 
         // Move file (renamed)
-        $file = $file->move(public_path() . '\items', $newName);
+        $file = $file->move(/*public_path() . '\*/'items', $newName);
 
         // add record to items table
         DB::insert('INSERT INTO items (title, info, fileName) VALUES (?, ?, ?);',

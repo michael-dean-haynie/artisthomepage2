@@ -54,7 +54,7 @@ class SetUpDefaultDbModel extends Migration
             CREATE TABLE link_items_categories (
             linkID INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
             itemID INT,
-
+            catID INT,
             updatedAt TIMESTAMP
             );
         ');
