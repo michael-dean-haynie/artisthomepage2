@@ -15,6 +15,6 @@
     box-shadow:inset .35rem .35rem .25rem #A9A9A9;
 }
 
-#upload-item, #edit-item, #set-homepage-item, #manage-categories{
+#upload-item, #edit-item, #set-homepage-item, #manage-categories, #admin-properties{
     font-size: 3rem;
 }

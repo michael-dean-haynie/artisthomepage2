@@ -31,5 +31,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/edit-category/{catID}', 'PagesController@getEditCategory');
     Route::post('/update-category', 'PagesController@postUpdateCategory');
     Route::post('/delete-category', 'PagesController@postDeleteCategory');
+    Route::get('/admin-properties', 'PagesController@getAdminProperties');
+    Route::post('/update-artist-name', 'PagesController@postUpdateArtistName');
+    Route::post('/update-registration-key', 'PagesController@postUpdateRegistrationKey');
 });
 

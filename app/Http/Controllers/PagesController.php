@@ -121,6 +121,13 @@ class PagesController extends Controller
         return view('pages/edit-category', $dataModel);
     }
 
+    public function getAdminProperties(Request $request){
+        $dataModel = $this::prepareDataModel(['defaultData']);
+        $dataModel['ami'] = 'admin';
+        $dataModel['registrationKey'] = $this->getRegistrationKey();
+        return view('pages/admin-properties', $dataModel);
+    }
+
 
 
     /*
@@ -342,6 +349,52 @@ class PagesController extends Controller
         ', [$request->input('catID')]);
 
         return redirect('/manage-categories')->with('success', 'Category deleted successfully.');
+    }
+
+    public function postUpdateArtistName(Request $request){
+        $dataModel = $this::prepareDataModel(['defaultData']);
+        $dataModel['ami'] = 'admin';
+
+        // validate input
+        $this->validate($request, [
+            'artist-name' => 'required|max:225'
+        ],
+        [],
+        [
+            'artist-name' => 'Artist Name'
+        ]);
+
+        $artistName = $request->input('artist-name');
+
+        // Update artist name
+        $adminDataID = DB::select('SELECT adminDataID FROM admin_data WHERE name = "artist-name";')[0]->adminDataID;
+        DB::update('UPDATE admin_data SET value = ? WHERE adminDataID = ?;', [$artistName, $adminDataID]);
+
+
+        return redirect('/admin-properties')->with('success', 'Artist Name updated successfully.');
+    }
+
+    public function postUpdateRegistrationKey(Request $request){
+        $dataModel = $this::prepareDataModel(['defaultData']);
+        $dataModel['ami'] = 'admin';
+
+        // validate input
+        $this->validate($request, [
+            'registration-key' => 'required|max:225'
+        ],
+        [],
+        [
+            'registration-key' => 'Registration Key'
+        ]);
+
+        $registrationKey = $request->input('registration-key');
+
+        // Update artist name
+        $adminDataID = DB::select('SELECT adminDataID FROM admin_data WHERE name = "registration-key";')[0]->adminDataID;
+        DB::update('UPDATE admin_data SET value = ? WHERE adminDataID = ?;', [$registrationKey, $adminDataID]);
+
+
+        return redirect('/admin-properties')->with('success', 'Registration Key updated successfully.');
     }
 
     /*
