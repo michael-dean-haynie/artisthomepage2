@@ -157,7 +157,9 @@ trait ResetsPasswords
         }
 
         if (view()->exists('auth.passwords.reset')) {
-            return view('auth.passwords.reset')->with(compact('token', 'email'));
+//            $defaultData = \App\Http\Controllers\PagesController::prepareDataModel(['defaultData']);
+//            $allCategories = "helloWorld";
+            return view('auth.passwords.reset', \App\Http\Controllers\PagesController::prepareDataModel(['defaultData']))->with(compact('token', 'email'));
         }
 
         return view('auth.reset')->with(compact('token', 'email'));
